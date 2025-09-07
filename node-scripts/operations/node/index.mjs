@@ -6,12 +6,49 @@ class Node {
 	#nodeValue;
 	constructor() {
 		
+		// Proxy para acceso dinámico a NodeLinks
+		return new Proxy(this, {
+
+			get(target, prop) {
+				// Propiedades nativas de la clase
+				if (prop in target || typeof prop === 'symbol') {
+					return target[prop];
+				}
+
+				// Acceso dinámico a NodeLinks
+				if (typeof prop === 'string') {
+					return target._getLinkProxy(prop);
+				}
+
+				return undefined;
+			},
+
+			set(target, prop, value) {
+				// Propiedades nativas
+				if (prop in target || prop.startsWith('_') || prop.startsWith('#')) {
+					target[prop] = value;
+					return true;
+				}
+
+				// Crear/actualizar NodeLink dinámicamente
+				if (typeof prop === 'string') {
+					target._setLink(prop, value);
+					return true;
+				}
+
+				return false;
+			}
+
+		});
+
 	}
 
 	_addLink(node) {}
 	_remLink(node) {}
-	_resolveLink(linkKey) {}
-	_applyMatrix(nodeMatrix) {}
+	_updateValue(newValue) {}
+	async _resolveLink(linkKey) {}
+	async _applyMatrix(nodeMatrix) {}
+	async _getType() {}
 
 }
 
