@@ -2,11 +2,13 @@
 
 class Node {
 
-	#nodeLinks;
-	#nodeValue;
-	constructor() {
-		
+	#_nodeLinks;
+	#_nodeValue;
+	#_nodeToken
+	constructor(nodeType, nodeValue) {
+
 		// Proxy para acceso dinámico a NodeLinks
+		/*
 		return new Proxy(this, {
 
 			get(target, prop) {
@@ -40,6 +42,7 @@ class Node {
 			}
 
 		});
+		*/
 
 	}
 
