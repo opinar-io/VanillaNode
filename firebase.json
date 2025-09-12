@@ -1,13 +1,10 @@
 {
-  "apphosting": {
-    "backendId": "vanilla",
-    "rootDir": "/",
+  "hosting": {
+    "public": "public",
     "ignore": [
-      "node_modules",
-      ".git",
-      "firebase-debug.log",
-      "firebase-debug.*.log",
-      "functions"
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
     ]
   }
 }
